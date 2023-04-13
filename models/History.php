@@ -32,8 +32,6 @@ use yii\db\ActiveRecord;
  */
 class History extends ActiveRecord
 {
-    use ObjectNameTrait;
-
     const EVENT_CREATED_TASK = 'created_task';
     const EVENT_UPDATED_TASK = 'updated_task';
     const EVENT_COMPLETED_TASK = 'completed_task';

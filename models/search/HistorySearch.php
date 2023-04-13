@@ -3,6 +3,7 @@
 namespace app\models\search;
 
 use app\models\History;
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
@@ -30,6 +31,8 @@ class HistorySearch extends History
         return Model::scenarios();
     }
 
+
+
     /**
      * Creates data provider instance with search query applied
      *
@@ -39,7 +42,7 @@ class HistorySearch extends History
      */
     public function search($params)
     {
-        $query = History::find();
+        $query = Yii::createObject(HistorySearchQuery::class, [History::class]);
 
         // add conditions that should always apply here
 
@@ -66,10 +69,6 @@ class HistorySearch extends History
         $query->with([
             'customer',
             'user',
-            'sms',
-            'task',
-            'call',
-            'fax',
         ]);
 
         return $dataProvider;
