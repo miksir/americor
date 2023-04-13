@@ -25,9 +25,10 @@ use yii\db\ActiveRecord;
  * @property Customer $customer
  * @property User $user
  *
- * @property Task $task
- * @property Sms $sms
- * @property Call $call
+ * @property Task|null $task
+ * @property Sms|null $sms
+ * @property Call|null $call
+ * @property Fax|null $fax
  */
 class History extends ActiveRecord
 {

@@ -9,13 +9,15 @@
 
 use app\models\History;
 use app\widgets\Export\Export;
-use app\widgets\HistoryList\helpers\HistoryListHelper;
+use app\widgets\helpers\EventRender\EventRenderFabricMethod;
 
 $filename = 'history';
 $filename .= '-' . time();
 
 ini_set('max_execution_time', 0);
 ini_set('memory_limit', '2048M');
+
+$render = EventRenderFabricMethod::getInstance($this);
 ?>
 
 <?= Export::widget([
@@ -46,8 +48,8 @@ ini_set('memory_limit', '2048M');
         ],
         [
             'label' => Yii::t('app', 'Message'),
-            'value' => function (History $model) {
-                return strip_tags(HistoryListHelper::getBodyByModel($model));
+            'value' => function (History $model) use ($render) {
+                return strip_tags($render->getEventRender($model)->getMessage($model));
             }
         ]
     ],
