@@ -69,6 +69,10 @@ class HistorySearch extends History
         $query->with([
             'customer',
             'user',
+            'sms',
+            'task',
+            'call',
+            'fax',
         ]);
 
         return $dataProvider;
